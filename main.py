@@ -5,7 +5,7 @@ from torchvision import transforms as T
 from torchvision import datasets
 import warmup_scheduler
 from model import MLPMixer
-from utils import count_params
+
 
 
 
