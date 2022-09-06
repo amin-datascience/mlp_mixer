@@ -131,7 +131,7 @@ def train_func(train_loader, model, optimizer, loss_func, max_epochs = 100, vali
 	
 def main(parameters):
 
-	path = F"/content/gdrive/MyDrive/mlp_mixer_shahrivar"
+	path = r"/content/gdrive/MyDrive/mlp_mixer_shahrivar"
 	device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 	print('Starting MLP-Mixer....')
 	print(device)
