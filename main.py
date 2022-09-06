@@ -8,7 +8,6 @@ from model import MLPMixer
 
 
 
-
 def train_func(train_loader, model, optimizer, loss_func, max_epochs = 20, validation_loader = None, 
 			   batch_size = 64, scheduler = None, device = None, test = None):
 
@@ -118,8 +117,8 @@ def train_func(train_loader, model, optimizer, loss_func, max_epochs = 20, valid
 	model_save_name = 'mlp_mixer.pt'
 	path = F"/content/gdrive/My Drive/{model_save_name}" 
 	torch.save({
-		'model_state_dict': model_state,
-		'optimizer_state_dict' : optimizer_state, 
+		'model_state_dict': model.state_dict(),
+		'optimizer_state_dict' : optimizer.state_dict(), 
 		}, path)
 
 
@@ -132,7 +131,7 @@ def train_func(train_loader, model, optimizer, loss_func, max_epochs = 20, valid
 	
 def main(parameters):
 
-	path = F"/content/gdrive/MyDrive/mlp_mixer shahrivar"
+	path = F"/content/gdrive/MyDrive/mlp_mixer_shahrivar"
 	device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 	print('Starting Dino With Convit Backbone....')
 	print(device)
