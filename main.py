@@ -8,8 +8,8 @@ from model import MLPMixer
 
 
 
-def train_func(train_loader, model, optimizer, loss_func, max_epochs = 20, validation_loader = None, 
-			   batch_size = 64, scheduler = None, device = None, test = None):
+def train_func(train_loader, model, optimizer, loss_func, max_epochs = 100, validation_loader = None, batch_size = 128, 
+				scheduler = None, device = None, test_loader = None, train_loader_plain = None, clip_grad = 2.0):
 
 	''' 
 	This function takes raw data as input and converst it to data loader itself.
@@ -49,7 +49,7 @@ def train_func(train_loader, model, optimizer, loss_func, max_epochs = 20, valid
 			#======================== BACKWARD AND OPTIMZIE  =================================
 			optimizer.zero_grad()
 			loss.backward()
-			clip_gradient(model)
+			clip_gradient(model, clip_grad)
 			optimizer.step()
 
 
