@@ -1,5 +1,5 @@
 import torch 
-import torch.nn as nn  
+import torch.nn as nn 
 
 
 
@@ -102,10 +102,3 @@ if __name__ == '__main__':
 
 	out = model(x)
 	print(out.shape)
-
-
-
-
-
-
-
