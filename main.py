@@ -160,7 +160,8 @@ def main(parameters):
 	print('The number of trainable parameters is : {}'.format(n_parameters))
 	criterion = nn.CrossEntropyLoss()
 	optimizer = torch.optim.AdamW(model.parameters(), lr = parameters['lr'], weight_decay = parameters['weight_decay'])
-	scheduler = ReduceLROnPlateau(optimizer, 'min')
+	base_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max = 100, eta_min = 1e-6)
+	scheduler = warmup_scheduler.GradualWarmupScheduler(optimizer, multiplier=1., total_epoch=5, after_scheduler = base_scheduler)
 	history = train_func(train_loader, model, optimizer, loss_func = criterion)
 
 
