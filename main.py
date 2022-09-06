@@ -132,7 +132,7 @@ def train_func(train_loader, model, optimizer, loss_func, max_epochs = 20, valid
 	
 def main(parameters):
 
-	path = F"/content/gdrive/MyDrive/Dino_khordad"
+	path = F"/content/gdrive/MyDrive/mlp_mixer shahrivar"
 	device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 	print('Starting Dino With Convit Backbone....')
 	print(device)
