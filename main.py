@@ -147,9 +147,9 @@ def main(parameters):
 	validation, test = torch.utils.data.random_split(transformed_cifar10_test, [5000, 5000])
 
 
-	train_loader = torch.utils.data.DataLoader(transformed_cifar10, batch_size = 64, shuffle = True, drop_last = True)
-	test_loader = torch.utils.data.DataLoader(test, batch_size = 64, shuffle= True, drop_last = True)   
-	val_loader = torch.utils.data.DataLoader(validation, batch_size = 64, shuffle = True, drop_last = True) 
+	train_loader = torch.utils.data.DataLoader(transformed_cifar10, batch_size = parameters['batch_size'], shuffle = True, drop_last = True)
+	test_loader = torch.utils.data.DataLoader(test, batch_size = parameters['batch_size'], shuffle= True, drop_last = True)   
+	val_loader = torch.utils.data.DataLoader(validation, batch_size = parameters['batch_size'], shuffle = True, drop_last = True) 
 
 
 	model = MLPMixer(in_channels = 3, img_size = parameters['img_size'], dim = parameters['dim'], num_classes = parameters['n_classes'],
