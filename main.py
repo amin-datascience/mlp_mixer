@@ -133,14 +133,14 @@ def main(parameters):
 
 	path = F"/content/gdrive/MyDrive/mlp_mixer_shahrivar"
 	device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-	print('Starting Dino With Convit Backbone....')
+	print('Starting MLP-Mixer....')
 	print(device)
 
 	plain_tranformation = T.Compose([T.ToTensor(),
 								    T.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))])
 
-	transformed_cifar10 = datasets.CIFAR10(path, train = True, transform = plain_tranformation)
-	transformed_cifar10_test = datasets.CIFAR10(path, train = False, transform = plain_tranformation)
+	transformed_cifar10 = datasets.CIFAR10(path, , download = True, train = True, transform = plain_tranformation)
+	transformed_cifar10_test = datasets.CIFAR10(path, download = True, train = False, transform = plain_tranformation)
 
 
 	validation, test = torch.utils.data.random_split(transformed_cifar10_test, [5000, 5000])
@@ -182,12 +182,3 @@ if __name__ == '__main__':
 
 
 	history, model = main(parameters)
-
-
-
-
-
-
-
-
-
