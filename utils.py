@@ -4,8 +4,6 @@ from sklearn.manifold import TSNE
 
 
 
-
-
 def visualize_data(data, model, device):
 	''''''
 
