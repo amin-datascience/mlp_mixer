@@ -4,6 +4,8 @@ from sklearn.manifold import TSNE
 
 
 
+
+
 def visualize_data(data, model, device):
 	''''''
 
@@ -77,7 +79,4 @@ def count_params(model):
 	'''Returns the number of parameters of a model'''
 
 	return sum([params.numel() for params in model.parameters() if params.requires_grad == True])
-
-
-
 
