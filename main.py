@@ -139,8 +139,8 @@ def main(parameters):
 	plain_tranformation = T.Compose([T.ToTensor(),
 								    T.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))])
 
-	transformed_cifar10 = datasets.CIFAR10(path, download = True,  train = True, transform = plain_tranformation)
-	transformed_cifar10_test = datasets.CIFAR10(path, download = True, train = False, transform = plain_tranformation)
+	transformed_cifar10 = datasets.CIFAR10(path, train = True, transform = plain_tranformation)
+	transformed_cifar10_test = datasets.CIFAR10(path, train = False, transform = plain_tranformation)
 
 
 	validation, test = torch.utils.data.random_split(transformed_cifar10_test, [5000, 5000])
@@ -152,8 +152,8 @@ def main(parameters):
 
 
 	model = MLPMixer(in_channels = 3, img_size = parameters['img_size'], dim = parameters['dim'], num_classes = parameters['n_classes'],
-	depth = parameters['depth'], patch_size = parameters['patch_size'], token_dim = parameters['token_dim'], 
-	channel_dim = parameters['channel_dim']).to(device)
+					depth = parameters['depth'], patch_size = parameters['patch_size'], token_dim = parameters['token_dim'], 
+					channel_dim = parameters['channel_dim']).to(device)
 
 	n_parameters = count_params(model)
 	print('The number of trainable parameters is : {}'.format(n_parameters))
@@ -161,7 +161,11 @@ def main(parameters):
 	optimizer = torch.optim.AdamW(model.parameters(), lr = parameters['lr'], weight_decay = parameters['weight_decay'])
 	base_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max = 100, eta_min = 1e-6)
 	scheduler = warmup_scheduler.GradualWarmupScheduler(optimizer, multiplier=1., total_epoch=5, after_scheduler = base_scheduler)
-	history = train_func(train_loader, model, optimizer, loss_func = criterion)
+	
+
+	history = train_func(train_loader, model = model, optimizer = optimizer, loss_func = criterion, max_epochs = 100,  
+						validation_loader = val_loader, batch_size = parameters['batch_size'], scheduler = scheduler, device = device,
+						clip_grad = parameters['clip_grad'])
 
 
 	return history, model 
