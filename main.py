@@ -181,4 +181,4 @@ if __name__ == '__main__':
 	  			  'dim': 384, 'token_dim': 256, 'channel_dim': 2048}
 
 
-	history, model = main(parameters)
+	history, model = main(parameters) 
