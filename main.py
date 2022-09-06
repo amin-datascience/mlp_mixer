@@ -139,7 +139,7 @@ def main(parameters):
 	plain_tranformation = T.Compose([T.ToTensor(),
 								    T.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))])
 
-	transformed_cifar10 = datasets.CIFAR10(path, , download = True, train = True, transform = plain_tranformation)
+	transformed_cifar10 = datasets.CIFAR10(path, download = True, train = True, transform = plain_tranformation)
 	transformed_cifar10_test = datasets.CIFAR10(path, download = True, train = False, transform = plain_tranformation)
 
 
